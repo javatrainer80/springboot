@@ -29,3 +29,58 @@ public @interface SpringBootApplication
   
 # Random port number
   server.port=0  
+  
+  
+# Autoconfiguration report
+```
+
+============================
+CONDITIONS EVALUATION REPORT
+============================
+
+
+Positive matches:
+-----------------
+
+   AopAutoConfiguration matched:
+      - @ConditionalOnProperty (spring.aop.auto=true) matched (OnPropertyCondition)
+   
+Negative matches:
+-----------------
+
+   ActiveMQAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'jakarta.jms.ConnectionFactory' (OnClassCondition)
+
+Exclusions:
+-----------
+
+    None
+
+Unconditional classes:
+----------------------
+
+    org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+    org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration
+
+```
+ 
+- if developer wants to create a bean instead of springboot then developer has to add that in the exclusion   list.
+
+```java
+    @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})  
+    Exclusions:
+    -----------  
+    org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+```
+- unconditional classes will be created irrespective of dependencies added in the pom.xml file, these are    base classes required for springboot application      
+
+```java
+Note: @SpringBootApplication is the combination of below configurtions
+      //@SpringBootConfiguration
+      //@EnableAutoConfiguration
+      //@ComponentScan
+```
+
+- For the classes under sub packages of main root package are not required to add componentscan in StringBootApplcation.
+  
