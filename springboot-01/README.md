@@ -31,7 +31,7 @@ public @interface SpringBootApplication
   server.port=0  
   
   
-# Autoconfiguration report
+# Autoconfiguration report (dubug=true)
 ```
 
 ============================
@@ -84,3 +84,33 @@ Note: @SpringBootApplication is the combination of below configurtions
 
 - For the classes under sub packages of main root package are not required to add componentscan in StringBootApplcation.
   
+# MVC Style RestServices  
+
+```java
+@Controller
+@RequestMapping("/employees")
+public class EmployeeController {
+
+	
+	@GetMapping
+	@ResponseBody
+	public List<String> getEmployee() {
+		return Arrays.asList("Ramesh","Suresh");
+		
+	}
+}
+
+```
+Note: `@ResponseBody` tells DispatcherServer send only HttpResponse not view.
+  
+- http://localhost:8080/api/employees
+- http://localhost:8080/api/employees/getEmployeeByName?empName=Ramesh
+- http://localhost:8080/api/employees/getEmployee
+  requestbody:  
+  
+  {
+        "empId": 13,
+        "empName": "Ramesh",
+        "empAge": 34
+    } 
+- Use postman to test the APIs
