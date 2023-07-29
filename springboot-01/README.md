@@ -114,3 +114,5 @@ Note: `@ResponseBody` tells DispatcherServer send only HttpResponse not view.
         "empAge": 34
     } 
 - Use postman to test the APIs
+- ViewResolver will not come into picture.
+
